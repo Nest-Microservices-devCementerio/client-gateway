@@ -4,6 +4,7 @@ import { envs } from './config';
 import { Logger, RequestMethod, ValidationPipe } from '@nestjs/common';
 import { RpcCustomExceptionFilter } from './common';
 
+
 async function bootstrap() {
   const logger = new Logger('Main-Gateway');
 
@@ -23,6 +24,8 @@ async function bootstrap() {
   );
 
   app.useGlobalFilters(new RpcCustomExceptionFilter())
+
+  app.enableCors();
 
   await app.listen(envs.port);
 
