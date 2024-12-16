@@ -25,9 +25,14 @@ async function bootstrap() {
 
   app.useGlobalFilters(new RpcCustomExceptionFilter())
 
-  app.enableCors();
+  // Habilitar CORS
+  app.enableCors({
+    origin: 'http://localhost:5173', // Reemplaza con la URL de tu frontend
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    credentials: true,
+  });
 
-  await app.listen(envs.port);
+  await app.listen(envs.port ?? 3000);
 
   console.log('Health Check configured');
 
